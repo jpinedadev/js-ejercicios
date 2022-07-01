@@ -6,25 +6,23 @@ Crea un nuevo proyecto de Node
 - Registra el error en un archivo a través de un try...catch
 */
 
-const miFuncion = val => {
-    if (typeof val === "number") {
-        return 2 * val
-    }
-    throw new Error("El valor debe ser de tipo número")
+const winston = require("winston");
+
+const logger = winston.createLogger({
+  level: "error",
+  format: winston.format.json(),
+  defaultMeta: { service: "user-service" },
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+  ],
+});
+
+function showError() {
+  throw new Error("showError function");
 }
 
-// const elDoble = miFuncion("a1a")
-const numero = "8";
-
 try {
-    // Código que puede fallar
-    console.log("Está ejecutándose de manera correcta")
-    const doble = miFuncion(numero)
-    console.log(doble)
+  showError();
 } catch (e) {
-    // En caso de fallar, quiero que ejecutes
-    console.error(`El valor de e es: ${e}`)
-    console.error("ERROR!")
-} finally {
-    console.log("Esto se va a ejecutar tanto si se produce algún error, como si no existe ninguno")
+  logger.log("error", e.toString());
 }
