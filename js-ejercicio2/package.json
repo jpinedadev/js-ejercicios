@@ -1,0 +1,19 @@
+{
+  "name": "sesion2",
+  "version": "1.0.0",
+  "description": "ejercicio 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "jpinedadev",
+  "license": "ISC"
+}
