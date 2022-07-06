@@ -3,19 +3,13 @@ console.log('hola mundo')
 const nombre = "Julio"
 const apellido = "Pineda"
 
-const obj = {
-	nombre: `${nombre}`,
-	apellido:`${apellido}`
+const datos = {
+    nombre,
+    apellido
 }
 
-console.log(obj)
+sessionStorage.setItem("datos", JSON.stringify(datos))
+localStorage.setItem("datos", JSON.stringify(datos))
 
-localStorage.setItem("persona",JSON.stringify(obj))
-
-sessionStorage.setItem("persona",obj)
-
-
-var date = new Date();
-date.setTime(date.getTime() + (120 * 1000));
-
-document.cookie="persona=obj;expires="+ date;
+const now = new Date()
+document.cookie = `datos=${JSON.stringify(datos)};expires=${new Date(now.getTime() + 2 * 60000)}`
